@@ -1,0 +1,2 @@
+class MePage
+end

@@ -1,0 +1,116 @@
+@import 'bootstrap/scss/bootstrap';
+@import 'trix';
+
+$gray: #666;
+$blue: #1E9FFF;
+
+nav {
+  margin-top: 30px;
+  width: 100%;
+  p {
+    text-align: center;
+    font-size: 17px;
+    span {
+      padding: 10px;
+    }
+  }
+}
+
+#post_content {
+  display: none;
+}
+
+.container {
+  padding-top: 50px;
+  position: relative;
+  min-height: 800px;
+  padding-bottom: 50px;
+  box-sizing: border-box;
+}
+
+.gray {
+  color: $gray;
+}
+
+.blue {
+  color: $blue !important;
+}
+
+.center {
+  text-align: center;
+}
+
+a {
+  color: $gray;
+}
+
+a:hover{
+  color: $blue;
+  background-color: white;
+  text-decoration: none;
+}
+
+section {
+  margin: 20px auto;
+  span.title {
+    font-size: 20px;
+  }
+  span.time {
+    float: right;
+    line-height: 37px;
+    font-size: 13px;
+    color: #666;
+  }
+  p.subtitle {
+    font-size: 13px;
+    color: #666;
+    margin-bottom: 0px;
+    margin-top: 5px;
+  }
+}
+
+footer{
+  height: 30px;
+  width: 100%;
+  color: #666;
+  position: relative;
+  bottom: 10px;
+  font-size: 13px;
+  text-align: center;
+  clear: both;
+  display: block;  
+  margin: 0px auto;
+}
+
+.pagination {
+  span{
+    margin: auto 10px !important;
+  }
+}
+
+#profile {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto;
+  #profile-image {
+    height: 80px;
+    width: 80px;
+    border-radius: 40px;
+  } 
+}
+
+.technology-stack {
+  color: $gray;
+  cursor: pointer;
+  div{
+    height: 150px;
+    :hover {
+      color: $blue;
+    }
+    h4{
+      line-height: 75px;
+      cursor: pointer;
+    }
+  }
+}
+

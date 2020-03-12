@@ -1,0 +1,5 @@
+<nav>
+    <% if current_user %>
+      <p><%= link_to 'Posts', admin_posts_path, class: "#{(controller_name == 'posts' && action_name == 'index') ? 'blue' : ''}" %><span>/</span><%= link_to 'New Post', new_admin_post_path, class: "#{(controller_name == 'posts' && action_name == 'new') ? 'blue' : ''}" %><span>/</span><%= link_to 'Logout', destroy_user_session_path, method: 'delete' %></p>
+    <% end %>
+</nav>

@@ -1,0 +1,18 @@
+<% @posts.each do |post| %>
+  <section>
+    <article>
+      <div class='row'>
+        <div class='col-sm-12'>
+          <span class='title'><%= link_to post.title, "posts/#{post.fake_url}" %></span>
+          <!-- <span class='time'>written on <%= post.created_at_human %></span>
+          <p class='subtitle'># <%= post.subtitle %> #</p> -->
+          <span class='time'><%= link_to 'Edit', edit_admin_post_path(post) %></span>
+          <p class='subtitle'>written on <%= post.created_at_human %></p>
+        </div>
+      </div>
+    </article>
+  </section>
+  <hr>
+<% end %>
+<%= paginate @posts %>
+
