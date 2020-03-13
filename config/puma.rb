@@ -1,38 +1,27 @@
-# Puma can serve each request in a thread from an internal thread pool.
-# The `threads` method setting takes two numbers: a minimum and maximum.
-# Any libraries that use thread pools should be configured to match
-# the maximum value specified for Puma. Default is set to 5 threads for minimum
-# and maximum; this matches the default thread size of Active Record.
-#
-max_threads_count = ENV.fetch("RAILS_MAX_THREADS") { 5 }
-min_threads_count = ENV.fetch("RAILS_MIN_THREADS") { max_threads_count }
-threads min_threads_count, max_threads_count
+#!/usr/bin/env puma
 
-# Specifies the `port` that Puma will listen on to receive requests; default is 3000.
-#
-port        ENV.fetch("PORT") { 3000 }
+#rails的运行环境
+environment 'production'
+threads 2, 64
+workers 4
 
-# Specifies the `environment` that Puma will run in.
-#
-environment ENV.fetch("RAILS_ENV") { "development" }
+#项目名
+app_name = "tonna.in"
+#项目路径
+application_path = "/var/www/#{app_name}"
+#这里一定要配置为项目路径下地current
+directory "#{application_path}/current"
 
-# Specifies the `pidfile` that Puma will use.
-pidfile ENV.fetch("PIDFILE") { "tmp/pids/server.pid" }
+#下面都是 puma的配置项
+pidfile "#{application_path}/shared/tmp/pids/puma.pid"
+state_path "#{application_path}/shared/tmp/sockets/puma.state"
+stdout_redirect "#{application_path}/shared/log/puma.stdout.log", "#{application_path}/shared/log/puma.stderr.log"
+bind "unix://#{application_path}/shared/tmp/sockets/#{app_name}.sock"
+activate_control_app "unix://#{application_path}/shared/tmp/sockets/pumactl.sock"
 
-# Specifies the number of `workers` to boot in clustered mode.
-# Workers are forked web server processes. If using threads and workers together
-# the concurrency of the application would be max `threads` * `workers`.
-# Workers do not work on JRuby or Windows (both of which do not support
-# processes).
-#
-# workers ENV.fetch("WEB_CONCURRENCY") { 2 }
-
-# Use the `preload_app!` method when specifying a `workers` number.
-# This directive tells Puma to first boot the application and load code
-# before forking the application. This takes advantage of Copy On Write
-# process behavior so workers use less memory.
-#
-# preload_app!
-
-# Allow puma to be restarted by `rails restart` command.
-plugin :tmp_restart
+#后台运行
+daemonize true
+on_restart do
+  puts 'On restart...'
+end
+preload_app!
