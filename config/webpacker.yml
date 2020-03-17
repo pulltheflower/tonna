@@ -87,7 +87,10 @@ production:
   <<: *default
 
   # Production depends on precompilation of packs prior to booting for performance.
-  compile: true
+  check_yarn_integrity: false
+  compile: fasle
+  public_root_path: public
+  public_output_path: packs
 
   # Extract and emit a css file
   extract_css: true
